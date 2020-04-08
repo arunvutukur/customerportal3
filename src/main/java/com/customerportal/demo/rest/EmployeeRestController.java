@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -21,7 +22,7 @@ import lombok.extern.slf4j.Slf4j;
 
 //@RestController ->simply returns the object and object data is directly written into HTTP response as JSON or XML
 @Controller //Controller returns in the form of model as we need it to view in thymleaf template(is to create a Map of the model object and find a view
-@RequestMapping("/api")
+@RequestMapping("/employees")
 @Slf4j
 public class EmployeeRestController {
 	
@@ -50,8 +51,35 @@ public class EmployeeRestController {
 			// add to the spring model
 		theModel.addAttribute("employees", theEmployees);
 			
-		return "list-employees";
+		return "employees/list-employees";
 	}
+	
+	@GetMapping("/showFormForAdd")
+	public String showFormForAdd(Model theModel) {
+			
+	// create model attribute to bind form data
+		
+		Employee theEmployee =new Employee();
+		
+		theModel.addAttribute("employee", theEmployee);
+		
+		return "employees/employee-form";	
+		
+	}
+	
+	@PostMapping("/save")
+	public String saveEmployee(@ModelAttribute("employee") Employee theEmployee) {
+		
+		// save the employee
+		employeeService.save(theEmployee);
+		
+		// use a redirect to prevent duplicate submissions
+		return "redirect:/employees/list";
+	}
+	
+	
+	
+	
 	
 	
 //	// Expose "/employees" and return list of employees
