@@ -78,8 +78,8 @@ public class EmployeeRestController {
 		return "redirect:/employees/list";
 	}
 	
-	
-	@PostMapping("/showFormForUpdate")
+	//you get 405 errors if its not proper format or wrong Mapping like using GET instead of POST
+	@GetMapping("/showFormForUpdate")
 	public String showFormForUpdate(@RequestParam("employeeId") int theId,
 									Model theModel) {
 		
@@ -94,65 +94,15 @@ public class EmployeeRestController {
 	}
 	
 	
-	
-	
-	
-	
-//	// Expose "/employees" and return list of employees
-//	@GetMapping("/employees")
-//	public List<Employee> findAll(){
-//		//return employeeDAO.findAll();
-//		return employeeService.findAll();
-//	}
-//	
-//	@GetMapping("/employees/{employeeId}")
-//	public Employee getEmployee(@PathVariable int employeeId) {
-//		
-//		Employee theEmployee =employeeService.findById(employeeId);
-//		
-//		if( theEmployee ==null) {
-//			throw new RuntimeException("the employee is not found " + employeeId);
-//		}
-//		
-//		return theEmployee;		
-//	}
-//
-//	@PutMapping("/employees")
-//	public Employee addEmployee(@RequestBody Employee theEmployee) {
-//		
-//		
-//		//this is to force save of new item...instead of update and also just set incase they pass any id
-//		//in Json so set id to 0
-//		theEmployee.setId(0);
-//		employeeService.save(theEmployee);		
-//		return theEmployee;
-//		
-//	}
-//	
-//	@DeleteMapping("/employees/{employeeId}")
-//	public String deleteEmployee(@PathVariable int employeeId){
-//		
-//		Employee theEmployee =employeeService.findById(employeeId);
-//		
-//		if( theEmployee ==null) {
-//			throw new RuntimeException("the employee id not found " + employeeId);
-//		}
-//		
-//		employeeService.deleteById(employeeId);	
-//		return "Deleted EmployeeId " +employeeId;	
-//		
-//	}
-//	
-//	
-//	@GetMapping("/hello")
-//	public String HelloWorld() {
-//	
-//		return "Hello World";
-//	}
-//	
-//	@GetMapping("/")
-//	public String index() {
-//		return "Greetings from Spring Boot!";
-//	}
+	@GetMapping("/delete")
+	public String delete(@RequestParam("employeeId") int theId) {
+		
+		// delete the employee
+		employeeService.deleteById(theId);
+		
+		// redirect to /employees/list
+		return "redirect:/employees/list";
+		
+	}
 		
 }
