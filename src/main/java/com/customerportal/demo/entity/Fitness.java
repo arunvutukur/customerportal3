@@ -2,27 +2,26 @@ package com.customerportal.demo.entity;
 
 
 import javax.persistence.Column;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-public class Fitness {
-
 	@Entity
 	@Table(name="fitness_tracker")
-	public class fitness {
+	public class Fitness {
 
 		
-		  public fitness(String food_name, int calories, String schedule, String day, int exercise) {		  
+		  public Fitness(String food_name, int calories, String schedule, String day, int exercise) {		  
 		  this.food_name = food_name;
 		  this.calories = calories; 
 		  this.schedule = schedule; 
 		  this.day = day; 
 		  this.exercise = exercise; }
 		  
-		  public fitness() { }
+		  public Fitness() { }
 		 
 		
 		@Id
@@ -90,9 +89,9 @@ public class Fitness {
 			this.exercise = exercise;
 		}
 
-
 		@Column(name="exercise")
 		private int exercise;	  
 		 
 	}
-}
+	
+

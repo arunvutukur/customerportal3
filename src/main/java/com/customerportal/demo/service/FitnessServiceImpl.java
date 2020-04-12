@@ -4,24 +4,23 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-
+import org.springframework.stereotype.Repository;
+import com.customerportal.demo.dao.FitnessRepository;
 import com.customerportal.demo.entity.Fitness;
 
+@Repository
 public class FitnessServiceImpl implements FitnessService {
 
-private com.customerportal.demo.dao.FitnessRepository FitnessRepository;
-	
 	//private fitnessTrackerDAO fitnessTrackerDAO;
 	
+	private FitnessRepository FitnessRepository;
+	
+	
 	@Autowired
-	public FitnessServiceImpl(com.customerportal.demo.dao.FitnessRepository thefitnessRepository) {
+	public FitnessServiceImpl(FitnessRepository thefitnessRepository) {
 	
 		FitnessRepository = thefitnessRepository;
 	}	
-	
-	public FitnessServiceImpl() {
-		
-	}
 
 	@Override
 	public List<Fitness> findAll() {
