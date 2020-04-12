@@ -11,7 +11,7 @@ public interface FitnessService {
 	
 	public Fitness findById(int theId);
 	
-	public void save(Fitness theFitness);
+	public void save(Fitness theFitness);	
 	
 	public void deleteById(int theId);
 	

@@ -1,0 +1,56 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+
+	<title>Save Food Schedule</title>
+</head>
+
+<body>
+
+	<div class="container">
+	
+		<h3>Food Scheduley</h3>
+		<hr>
+		
+		<p class="h4 mb-4">Save Schedule</p>
+	
+		<form action="#" th:action="@{/food/save}"
+						 th:object="${food}" method="POST">
+						 
+			<!-- Add hidden form field to handle update this tells the model which field to update-->
+			<input type="hidden" th:field="*{id}" />						 
+		
+			<input type="text" th:field="*{food_name}"
+					class="form-control mb-4 col-4" placeholder="Food Name" required>
+
+			<input type="text" th:field="*{calories}"
+					class="form-control mb-4 col-4" placeholder="Calories" required>
+
+			<input type="text" th:field="*{schedule}"
+					class="form-control mb-4 col-4" placeholder="Schedule" required>					
+			
+			<input type="text" th:field="*{day}"
+					class="form-control mb-4 col-4" placeholder="Day" required>					
+			
+			<input type="text" th:field="*{exercise}"
+					class="form-control mb-4 col-4" placeholder="Exercise" required>					
+				
+			<button type="submit" class="btn btn-info col-2">Save</button>
+						
+		</form>
+	
+		<hr>
+		<a th:href="@{/food/list}">Back to Schedule List</a>
+		
+	</div>
+</body>
+
+</html>
+
